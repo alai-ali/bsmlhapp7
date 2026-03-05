@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -10,8 +11,7 @@
 body{background:#000;color:#fff;height:100vh;overflow:hidden;position:fixed;width:100%}
 
 /* ЗАСТАВКА */
-#splash{position:fixed;inset:0;z-index:999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s}
-#splash.hide{opacity:0;pointer-events:none}
+#splash{position:fixed;inset:0;z-index:999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .s1{font-size:56px;font-weight:900;letter-spacing:10px}
 .s2{font-size:10px;color:#aaa;margin-top:10px;text-align:center;max-width:260px;text-transform:uppercase;letter-spacing:1px}
 
@@ -266,7 +266,7 @@ textarea.fi{min-height:80px;resize:none}
 var U={name:'',huid:'',photo:'',qrt:0.01,qrnc:0,invs:[],lv:1,dark:false};
 
 // Заставка
-setTimeout(function(){document.getElementById(‘splash’).classList.add(‘hide’);},2500);
+setTimeout(function(){document.getElementById(‘splash’).style.display=‘none’;},2500);
 
 // Регистрация
 function go1(){
