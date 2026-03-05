@@ -269,14 +269,14 @@ var U={name:'',huid:'',photo:'',qrt:0.01,qrnc:0,invs:[],lv:1,dark:false};
 // Заставка
 
 // Регистрация
-function go1(){
+async function go1(){
 var n=document.getElementById(‘nm’).value.trim();
 if(!n){T(‘⚠️ Введите имя’);return;}
 U.name=n;
-scr(‘s1’);
-navigator.mediaDevices.getUserMedia({video:{facingMode:‘user’}})
-.then(function(s){document.getElementById(‘video’).srcObject=s;})
-.catch(function(){scr(‘s2’);});
+document.getElementById(‘s0’).classList.remove(‘on’);
+document.getElementById(‘s1’).classList.add(‘on’);
+const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:‘user’}});
+document.getElementById(‘video’).srcObject=s;
 }
 function snap(){
 var v=document.getElementById(‘video’),c=document.getElementById(‘cv’);
