@@ -51,6 +51,9 @@ input{background:#111;border:1px solid #333;padding:15px;color:#fff;border-radiu
 .bk{font-size:28px;margin-right:10px;cursor:pointer}
 #ts{position:fixed;top:65px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.8);color:#fff;padding:10px 20px;border-radius:18px;font-size:13px;z-index:1000;opacity:0;transition:opacity 0.2s}
 #ts.on{opacity:1}
+.lv.s { border-color: var(--gold) !important; background: #fff8f0; }
+.lv.s b { color: var(--gold); }
+.pgb { overflow-y: auto; height: 100%; }
 </style>
 </head>
 <body>
@@ -125,13 +128,28 @@ input{background:#111;border:1px solid #333;padding:15px;color:#fff;border-radiu
         <p>Версия приложения: v9.1</p>
         <button class="btn" style="margin-top:20px; background:red; color:#fff" onclick="location.reload()">Выйти</button>
     </div>
-</div>
 
 <div id="pg-wal" class="pg">
     <div class="pgh"><span class="bk" onclick="hidePg('pg-wal')">‹</span>Wallet</div>
     <div style="padding:20px; color:#000; text-align:center">
         <h1 id="wq" style="font-size:40px; color:var(--gold)">0.01</h1>
         <p>Баланс QRT</p>
+    </div>  <div id="pg-pat" class="pg">
+    <div class="pgh"><span class="bk" onclick="hidePg('pg-pat')">‹</span>🛠 Патентная мастерская</div>
+    <div class="pgb" style="padding:15px; color:#000;">
+        <div id="pat-list" style="margin-bottom:15px"></div>
+        <div style="background:#fff; border-radius:12px; padding:18px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <h3 style="font-size:15px; margin-bottom:14px">Новое изобретение</h3>
+            <input id="it" class="fi" placeholder="Название изобретения" style="background:#f5f5f5; border:1px solid #ddd; color:#000; margin-bottom:10px; padding:12px; width:100%; border-radius:8px;">
+            <textarea id="id" placeholder="Опишите идею..." style="width:100%; height:80px; background:#f5f5f5; border:1px solid #ddd; border-radius:8px; padding:12px; margin-bottom:10px; font-family:inherit; resize:none;"></textarea>
+            <input id="ii" class="fi" placeholder="МПК (пример: A01G 25/16)" style="background:#f5f5f5; border:1px solid #ddd; color:#000; margin-bottom:15px; padding:12px; width:100%; border-radius:8px;">
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-bottom:15px">
+                <div id="lv1" class="lv s" onclick="slv(1)" style="border:2px solid #eee; border-radius:10px; padding:10px; text-align:center; cursor:pointer;"><b>L1</b><br><small style="font-size:9px; color:#888;">FREE</small></div>
+                <div id="lv2" class="lv" onclick="slv(2)" style="border:2px solid #eee; border-radius:10px; padding:10px; text-align:center; cursor:pointer;"><b>L2</b><br><small style="font-size:9px; color:#888;">$9.99</small></div>
+                <div id="lv3" class="lv" onclick="slv(3)" style="border:2px solid #eee; border-radius:10px; padding:10px; text-align:center; cursor:pointer;"><b>L3</b><br><small style="font-size:9px; color:#888;">$49.99</small></div>
+            </div>
+            <button onclick="fixPat()" style="background:var(--dark); color:var(--gold); border:1px solid var(--gold); padding:15px; border-radius:12px; font-weight:700; width:100%; cursor:pointer;">📱 ПРИЛОЖИТЬ NFC И ЗАФИКСИРОВАТЬ</button>
+        </div>
     </div>
 </div>
 
@@ -194,6 +212,44 @@ function loadChats(){
 }
 
 var tt;function T(m){var e=document.getElementById('ts');e.innerText=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2200);}
+var currentLv = 1;
+var inventions = [];
+
+function slv(n) {
+    currentLv = n;
+    document.querySelectorAll('.lv').forEach(el => el.classList.remove('s'));
+    document.getElementById('lv' + n).classList.add('s');
+}
+
+function fixPat() {
+    var title = document.getElementById('it').value.trim();
+    if(!title) { T('⚠️ Введите название'); return; }
+    T('📱 Приложите NFC...');
+    setTimeout(function() {
+        var reward = [1, 5, 10][currentLv - 1];
+        var id = 'INV-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        var date = new Date().toLocaleDateString('ru-RU');
+        inventions.unshift({t: title, lv: currentLv, date: date, id: id});
+        U.qrt = Math.round((U.qrt + reward) * 100) / 100;
+        document.getElementById('it').value = '';
+        document.getElementById('id').value = '';
+        document.getElementById('ii').value = '';
+        renderPatents();
+        document.getElementById('mq').innerText = U.qrt.toFixed(2);
+        document.getElementById('wq').innerText = U.qrt.toFixed(2);
+        T('✅ Патент зафиксирован! +' + reward + ' QRT');
+    }, 1500);
+}
+
+function renderPatents() {
+    document.getElementById('pat-list').innerHTML = inventions.map(x => `
+        <div style="background:#fff; border-radius:10px; padding:13px; margin-bottom:8px; border-left:4px solid var(--gold)">
+            <span style="display:inline-block; background:var(--gold); color:#fff; font-size:10px; padding:2px 7px; border-radius:8px; margin-bottom:4px">L${x.lv}</span>
+            <h4 style="font-size:14px; margin:0; color:#000;">${x.t}</h4>
+            <p style="font-size:11px; color:#888">${x.id} · ${x.date}</p>
+        </div>
+    `).join('');
+}
 </script>
 </body>
 </html>
