@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BSMLH</title>
+<title>BSMLH v9.1</title>
 <style>
+/* ТВОИ СТИЛИ ИЗ v9.0 */
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
 :root{--gold:#f6851b;--green:#07c160;--dark:#1a1a1a;--gray:#888}
 body{background:#000;color:#fff;height:100vh;overflow:hidden;position:fixed;width:100%}
@@ -16,218 +16,101 @@ body{background:#000;color:#fff;height:100vh;overflow:hidden;position:fixed;widt
 .s1{font-size:56px;font-weight:900;letter-spacing:10px}
 .s2{font-size:10px;color:#aaa;margin-top:10px;text-align:center;max-width:260px;text-transform:uppercase;letter-spacing:1px}
 
-/* ЭКРАНЫ */
+/* ЭКРАНЫ ВХОДА (СТАБИЛЬНЫЕ) */
 .scr{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px;background:#000;z-index:100}
 .scr.on{display:flex}
 input{background:#111;border:1px solid #333;padding:15px;color:#fff;border-radius:12px;width:100%;max-width:300px;margin-bottom:14px;outline:none;font-size:15px}
-input::placeholder{color:#555}
-.btn{background:var(–gold);color:#000;border:none;padding:16px;border-radius:12px;font-weight:700;width:100%;max-width:300px;cursor:pointer;font-size:15px;margin-bottom:10px}
-.link{color:#555;font-size:13px;text-decoration:underline;cursor:pointer;margin-top:8px}
-#video{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(–gold);transform:scaleX(-1);margin-bottom:20px}
+.btn{background:var(--gold);color:#000;border:none;padding:16px;border-radius:12px;font-weight:700;width:100%;max-width:300px;cursor:pointer;font-size:15px;margin-bottom:10px}
+#video{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);transform:scaleX(-1);margin-bottom:20px}
 .nfc-box{width:100px;height:100px;border:2px solid #00f2ff;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:20px}
-#nfc-txt{color:#00f2ff;font-size:13px;height:20px;margin-bottom:15px}
 
-/* APP */
-#app{display:none;height:100vh;flex-direction:column;background:#ededed;position:absolute;inset:0;color:#000}
-#hdr{height:54px;background:var(–dark);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:17px;flex-shrink:0}
-#body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+/* APP ИНТЕРФЕЙС */
+#app{display:none;height:100vh;flex-direction:column;background:#ededed;position:absolute;inset:0;color:#000;z-index:500}
+#hdr{height:54px;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:17px;flex-shrink:0}
+#body{flex:1;overflow-y:auto}
 #nav{height:76px;padding-bottom:16px;display:flex;justify-content:space-around;align-items:center;background:#f7f7f7;border-top:0.5px solid #ddd;flex-shrink:0}
-.nb{display:flex;flex-direction:column;align-items:center;gap:2px;color:#999;font-size:10px;font-weight:600;cursor:pointer}
-.nb i{font-size:22px;font-style:normal}
-.nb.on{color:var(–green)}
+.nb{display:flex;flex-direction:column;align-items:center;color:#999;font-size:10px;font-weight:600;cursor:pointer}
+.nb i{font-size:22px;font-style:normal;margin-bottom:2px}
+.nb.on{color:var(--green)}
 .tab{display:none}.tab.on{display:block}
-#tab-maps{height:100%}
-#tab-maps iframe{width:100%;height:100%;border:0}
 
-/* ЧАТ */
-.ci{display:flex;align-items:center;padding:12px 15px;background:#fff;border-bottom:0.5px solid #eee;cursor:pointer}
-.ci:active{background:#f5f5f5}
-.ca{width:46px;height:46px;background:#eee;border-radius:8px;margin-right:12px;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cn{font-weight:500;font-size:15px}.cm{font-size:13px;color:#bbb}.ct{font-size:11px;color:#bbb}
-
-/* HUB */
-#tab-hub{padding:15px}
-.pb{background:var(–dark);color:var(–gold);border:1px solid var(–gold);padding:20px;border-radius:14px;text-align:center;font-weight:700;font-size:15px;margin-bottom:12px;cursor:pointer}
-.hg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ht{background:#fff;padding:24px 10px;border-radius:12px;text-align:center;font-weight:700;font-size:12px;cursor:pointer}
-.ht:active{background:#f0f0f0}
-
-/* ПРОФИЛЬ */
+/* ПРОФИЛЬ И КОШЕЛЕК (ТВОЙ ДИЗАЙН) */
 .ph{background:#fff;padding:28px 18px;display:flex;align-items:center;margin-bottom:8px;position:relative}
-#pp{width:62px;height:62px;border-radius:10px;object-fit:cover;margin-right:14px;flex-shrink:0;background:#eee}
-.pi h2{font-size:19px;margin-bottom:3px}
-.pi p{font-size:12px;color:var(–gray)}
-.pi .v{font-size:12px;color:var(–green)}
-.qb{position:absolute;right:18px;font-size:22px;cursor:pointer;color:var(–gray)}
+#pp{width:62px;height:62px;border-radius:10px;object-fit:cover;margin-right:14px;background:#eee}
 .tr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 8px;margin-bottom:8px}
 .tc{background:#fff;border-radius:12px;padding:14px;text-align:center;cursor:pointer}
-.tl{font-size:10px;color:var(–gray);text-transform:uppercase;margin-bottom:4px}
-.tv{font-size:22px;font-weight:700}.tv.g{color:var(–gold)}.tv.gr{color:var(–green)}
-.ts{font-size:10px;color:#aaa;margin-top:2px}
+.tl{font-size:10px;color:var(--gray);text-transform:uppercase;margin-bottom:4px}
+.tv{font-size:22px;font-weight:700}.tv.g{color:var(--gold)}.tv.gr{color:var(--green)}
 .mg{background:#fff;margin-bottom:8px;border-top:0.5px solid #ddd;border-bottom:0.5px solid #ddd}
 .mi{display:flex;align-items:center;padding:14px 18px;cursor:pointer;position:relative}
-.mi:active{background:#f5f5f5}
-.mi:not(:last-child)::after{content:’’;position:absolute;left:52px;right:0;bottom:0;height:0.5px;background:#eee}
-.mii{width:24px;margin-right:14px;font-size:19px}
-.mit{flex:1;font-size:16px}
-.miv{font-size:13px;color:var(–gray);margin-right:6px}
-.miv.gr{color:var(–green)}
-.mia{color:#ccc;font-size:16px}
 
-/* СТРАНИЦЫ */
-.pg{position:fixed;inset:0;background:#ededed;z-index:500;display:none;flex-direction:column}
+/* СТРАНИЦЫ/МОДАЛКИ */
+.pg{position:fixed;inset:0;background:#ededed;z-index:800;display:none;flex-direction:column}
 .pg.on{display:flex}
-.pgh{height:54px;background:var(–dark);color:#fff;display:flex;align-items:center;padding:0 15px;font-weight:600;font-size:17px;flex-shrink:0}
+.pgh{height:54px;background:var(--dark);color:#fff;display:flex;align-items:center;padding:0 15px}
 .bk{font-size:28px;margin-right:10px;cursor:pointer}
-.pgb{flex:1;overflow-y:auto;padding:15px;-webkit-overflow-scrolling:touch}
-
-/* SERVICES */
-.sg{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:12px;padding:8px}
-.si{display:flex;flex-direction:column;align-items:center;padding:12px 4px;cursor:pointer}
-.si:active{opacity:0.6}
-.sii{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:5px}
-.si span{font-size:10px;color:#333}
-
-/* PATENT */
-.fc{background:#fff;border-radius:12px;padding:18px}
-.fc h3{font-size:15px;margin-bottom:14px}
-.fi{width:100%;background:#f5f5f5;border:1px solid #e0e0e0;padding:13px;color:#000;border-radius:10px;margin-bottom:10px;outline:none;font-size:14px}
-.fi::placeholder{color:#aaa}
-textarea.fi{min-height:80px;resize:none}
-.lr{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.lv{border:2px solid #eee;border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer;font-size:12px}
-.lv b{display:block;font-size:11px;margin-bottom:2px}
-.lv small{color:var(–gray)}
-.lv.s{border-color:var(–gold);background:#fff8f0}
-.lv.s small{color:var(–gold)}
-.bd{background:var(–dark);color:var(–gold);border:1px solid var(–gold);padding:14px;border-radius:12px;font-weight:700;width:100%;cursor:pointer;font-size:14px}
-.ii{background:#fff;border-radius:10px;padding:13px;margin-bottom:8px;border-left:4px solid var(–gold)}
-.ib{display:inline-block;background:var(–gold);color:#fff;font-size:10px;padding:2px 7px;border-radius:8px;margin-bottom:4px}
-
-/* WALLET */
-.qc{background:linear-gradient(135deg,#111,var(–dark));border:1px solid var(–gold);border-radius:16px;padding:24px;margin-bottom:14px;text-align:center}
-.ql{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
-.qa{font-size:42px;font-weight:900;color:var(–gold)}
-.qs{font-size:12px;color:#555;margin-top:3px}
-.rc{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;font-size:14px}
-.bt{background:#eee;border-radius:8px;height:9px;overflow:hidden;margin-top:8px}
-.bf{height:100%;background:linear-gradient(90deg,var(–green),#00f2ff);transition:width 0.5s}
-.hc{background:#fff;border-radius:12px;padding:14px}
-.hc h4{font-size:14px;margin-bottom:10px}
-.hr{display:flex;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid #eee;font-size:13px}
-.hr:last-child{border-bottom:none}
-.hr .gr{color:var(–green);font-weight:700}
-
-/* CARD */
-.cv{background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:16px;padding:22px;margin-bottom:14px;color:#fff}
-.cvt{display:flex;justify-content:space-between;font-size:10px;color:#aaa;letter-spacing:2px}
-.cvn{font-size:16px;letter-spacing:3px;margin:13px 0}
-.cvb{display:flex;justify-content:space-between;align-items:flex-end}
-.cvb small{display:block;font-size:10px;color:#aaa;margin-bottom:2px}
-.cvba{font-size:22px;font-weight:700;color:var(–gold)}
-.oi{background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;font-size:26px}
-.oi:active{background:#f5f5f5}
-.oi b{display:block;font-size:13px;margin-bottom:2px}
-.oi p{font-size:11px;color:var(–gray)}
-
-/* STICKERS */
-.stg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#fff;padding:14px;border-radius:12px;margin-bottom:10px}
-.stg div{font-size:34px;text-align:center;padding:8px;border-radius:8px;cursor:pointer}
-.stg div:active{background:#f0f0f0}
-.stl{font-size:12px;color:var(–gray);margin-bottom:6px}
-
-/* SETTINGS */
-.sp{background:#fff;padding:18px;display:flex;align-items:center;gap:14px;cursor:pointer;margin-bottom:8px}
-.sa{width:54px;height:54px;border-radius:8px;background:#f0f0f0;font-size:26px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
-.be{background:none;border:1px solid #ff3b30;color:#ff3b30;padding:13px 38px;border-radius:12px;font-size:15px;cursor:pointer}
-
-/* МОДАЛКИ */
-.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:800;align-items:center;justify-content:center}
-.mo.on{display:flex}
-.mb{background:#fff;border-radius:18px;padding:22px;width:88%;max-width:320px;color:#000}
-.mt{font-size:17px;font-weight:700;margin-bottom:18px;text-align:center}
-.mc{text-align:center;margin-top:16px;color:var(–gray);cursor:pointer;font-size:14px}
-.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.ai{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#333;text-decoration:none;cursor:pointer}
-.ai img{width:48px;height:48px;margin-bottom:5px;border-radius:11px}
-.sf{width:230px;height:230px;border:2px solid #00f2ff;border-radius:12px;overflow:hidden;position:relative}
-.sl{position:absolute;width:100%;height:2px;background:#00f2ff;top:0;animation:sc 2s linear infinite}
-@keyframes sc{to{top:100%}}
-
-/* ТОСТ */
-#ts{position:fixed;top:65px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.8);color:#fff;padding:10px 20px;border-radius:18px;font-size:13px;z-index:999;opacity:0;pointer-events:none;transition:opacity 0.2s;white-space:nowrap}
+#ts{position:fixed;top:65px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.8);color:#fff;padding:10px 20px;border-radius:18px;font-size:13px;z-index:1000;opacity:0;transition:opacity 0.2s}
 #ts.on{opacity:1}
 </style>
-
 </head>
 <body>
 
 <div id="splash"><div class="s1">BSMLH</div><div class="s2">Biometric Security Multifunction Ledger for Humanity</div></div>
 
-<!-- РЕГИСТРАЦИЯ -->
-
 <div id="s0" class="scr on">
-  <h2 id="rt" style="margin-bottom:20px">РЕГИСТРАЦИЯ</h2>
+  <h2 style="margin-bottom:20px">РЕГИСТРАЦИЯ</h2>
   <input id="nm" placeholder="Имя и фамилия">
   <button class="btn" onclick="go1()">ДАЛЕЕ →</button>
 </div>
 
-<!-- КАМЕРА -->
-
 <div id="s1" class="scr">
-  <p style="color:#888;font-size:13px;margin-bottom:14px">Смотрите в камеру</p>
   <video id="video" autoplay playsinline></video>
   <button class="btn" onclick="snap()">📸 СФОТОГРАФИРОВАТЬ</button>
   <canvas id="cv" style="display:none"></canvas>
 </div>
 
-<!-- NFC -->
-
 <div id="s2" class="scr">
   <div class="nfc-box">🛡️</div>
-  <div id="nfc-txt"></div>
+  <div id="nfc-txt" style="color:#00f2ff;margin-bottom:15px"></div>
   <button class="btn" onclick="doNFC()">АКТИВИРОВАТЬ NFC</button>
-  <div class="link" onclick="launch()">Войти без чипа</div>
+  <div style="color:#555;text-decoration:underline;cursor:pointer;margin-top:10px" onclick="launch()">Войти без чипа</div>
 </div>
-
-<!-- APP -->
 
 <div id="app">
   <div id="hdr">BSMLH</div>
   <div id="body">
-    <div id="tab-chat" class="tab on"></div>
-    <div id="tab-maps" class="tab"><iframe src="https://maps.google.com/maps?output=embed" loading="lazy"></iframe></div>
+    
+    <div id="tab-chat" class="tab on">
+        </div>
+
+    <div id="tab-maps" class="tab" style="height:100%">
+        <iframe src="https://www.google.com/maps/embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
+    </div>
+
     <div id="tab-hub" class="tab">
       <div style="padding:15px">
-        <div class="pb" onclick="show('pg-pat')">🛠 ПАТЕНТНАЯ МАСТЕРСКАЯ</div>
-        <div class="hg">
-          <div class="ht" onclick="show('mo-apps')">💻 Apps</div>
-          <div class="ht" onclick="show('mo-scan')">🔍 Scan QR</div>
-          <div class="ht" onclick="show('pg-svc')">💳 Services</div>
-          <div class="ht" onclick="T('🚧 Скоро')">🌐 Web3</div>
+        <div style="background:var(--dark);color:var(--gold);padding:20px;border-radius:14px;text-align:center;font-weight:700;margin-bottom:12px;cursor:pointer" onclick="showPg('pg-pat')">🛠 ПАТЕНТНАЯ МАСТЕРСКАЯ</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="background:#fff;padding:24px 10px;border-radius:12px;text-align:center;font-weight:700" onclick="T('🚧 Скоро')">💻 Apps</div>
+          <div style="background:#fff;padding:24px 10px;border-radius:12px;text-align:center;font-weight:700" onclick="T('🔍 Scan QR')">🔍 Scan</div>
         </div>
       </div>
     </div>
+
     <div id="tab-prof" class="tab">
       <div class="ph">
-        <img id="pp" src="https://via.placeholder.com/62/eee/999?text=+" alt="">
-        <div class="pi"><h2 id="pn">Пользователь</h2><p id="ph2">HUID: —</p><span class="v">✓ Верифицирован</span></div>
-        <div class="qb" onclick="show('mo-qr')">🔳</div>
+        <img id="pp" src="" alt="">
+        <div class="pi"><h2 id="pn">User</h2><p id="ph2">HUID: —</p><span style="color:var(--green);font-size:12px">✓ Верифицирован</span></div>
       </div>
       <div class="tr">
-        <div class="tc" onclick="show('pg-wal')"><div class="tl">QRT</div><div class="tv g" id="mq">0.01</div></div>
-        <div class="tc" onclick="show('pg-wal')"><div class="tl">QRNC</div><div class="tv gr" id="mr">0</div><div class="ts" id="mt">⚪ Новый</div></div>
+        <div class="tc" onclick="showPg('pg-wal')"><div class="tl">QRT</div><div class="tv g" id="mq">0.01</div></div>
+        <div class="tc" onclick="showPg('pg-wal')"><div class="tl">QRNC</div><div class="tv gr" id="mr">0</div></div>
       </div>
-      <div class="mg"><div class="mi" onclick="show('pg-svc')"><span class="mii">💳</span><span class="mit">Services</span><span class="mia">›</span></div></div>
-      <div class="mg">
-        <div class="mi" onclick="show('pg-fav')"><span class="mii">📦</span><span class="mit">Favorites</span><span class="mia">›</span></div>
-        <div class="mi" onclick="show('pg-mom')"><span class="mii">🖼️</span><span class="mit">Moments</span><span class="mia">›</span></div>
-        <div class="mi" onclick="show('pg-card')"><span class="mii">🧧</span><span class="mit">Cards & Offers</span><span class="miv" id="cm">0.01 QRT</span><span class="mia">›</span></div>
-        <div class="mi" onclick="show('pg-stk')"><span class="mii">😀</span><span class="mit">Stickers</span><span class="mia">›</span></div>
-      </div>
-      <div class="mg"><div class="mi" onclick="show('pg-set')"><span class="mii">⚙️</span><span class="mit">Settings</span><span class="mia">›</span></div></div>
+      <div class="mg"><div class="mi" onclick="showPg('pg-set')">⚙️ <span style="margin-left:10px">Settings</span></div></div>
     </div>
+
   </div>
+
   <div id="nav">
     <div class="nb on" id="nb-chat" onclick="tab('chat','BSMLH')"><i>💬</i>Chat</div>
     <div class="nb" id="nb-maps" onclick="tab('maps','Maps')"><i>🗺️</i>Maps</div>
@@ -236,127 +119,81 @@ textarea.fi{min-height:80px;resize:none}
   </div>
 </div>
 
-<!-- СТРАНИЦЫ -->
+<div id="pg-set" class="pg">
+    <div class="pgh"><span class="bk" onclick="hidePg('pg-set')">‹</span>Settings</div>
+    <div style="padding:20px; color:#000">
+        <p>Версия приложения: v9.1</p>
+        <button class="btn" style="margin-top:20px; background:red; color:#fff" onclick="location.reload()">Выйти</button>
+    </div>
+</div>
 
-<div id="pg-svc" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-svc')">‹</span>Services</div><div class="pgb"><div class="sg"><div class="si" onclick="T('💸 Платёж')"><div class="sii" style="background:#e8f5e9">💸</div><span>Отправить</span></div><div class="si" onclick="show('mo-qr')"><div class="sii" style="background:#e3f2fd">📲</div><span>Получить</span></div><div class="si" onclick="show('pg-pat')"><div class="sii" style="background:#fff8e1">🛠️</div><span>Патент</span></div><div class="si" onclick="T('🌱 Фонд')"><div class="sii" style="background:#f3e5f5">🌱</div><span>Фонд</span></div><div class="si" onclick="show('pg-wal')"><div class="sii" style="background:#e0f7fa">💰</div><span>Кошелёк</span></div><div class="si" onclick="T('🔄 Обмен')"><div class="sii" style="background:#e8eaf6">🔄</div><span>Обмен</span></div><div class="si" onclick="T('📊 История')"><div class="sii" style="background:#fce4ec">📊</div><span>История</span></div><div class="si" onclick="T('🚧 Скоро')"><div class="sii" style="background:#f5f5f5">➕</div><span>Ещё</span></div></div></div></div>
-
-<div id="pg-fav" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-fav')">‹</span>Favorites</div><div class="pgb"><div class="oi" onclick="show('pg-pat')">🛠️<div><b>Патентная мастерская</b><p>Зафиксируй изобретение</p></div></div><div class="oi" onclick="T('🌱 Humanity Fund')">🌱<div><b>Humanity Fund</b><p>Твой вклад в будущее</p></div></div><div class="oi" onclick="show('pg-wal')">💰<div><b>Кошелёк QRT</b><p>Баланс и история</p></div></div></div></div>
-
-<div id="pg-mom" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-mom')">‹</span>Moments</div><div class="pgb"><div style="background:#fff;border-radius:12px;margin-bottom:12px;overflow:hidden"><div style="display:flex;align-items:center;padding:12px 15px;gap:10px"><div style="width:38px;height:38px;border-radius:8px;background:#eee;font-size:20px;display:flex;align-items:center;justify-content:center">🤖</div><div><b style="font-size:14px">Alex Chen</b><p style="font-size:11px;color:#aaa">2 часа назад</p></div></div><div style="height:150px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:48px">🌿</div><div style="padding:10px 15px;font-size:14px;color:#333">Зафиксировал изобретение в BSMLH! #Innovation</div><div style="display:flex;gap:18px;padding:10px 15px;border-top:0.5px solid #eee"><span style="font-size:13px;color:#888;cursor:pointer" onclick="T('❤️ Лайк')">❤️ 24</span><span style="font-size:13px;color:#888;cursor:pointer" onclick="T('💬 Комментарий')">💬 5</span><span style="font-size:13px;color:#888;cursor:pointer" onclick="T('🔗 Скопировано')">🔗 Поделиться</span></div></div><div style="background:#fff;border-radius:12px;overflow:hidden"><div style="display:flex;align-items:center;padding:12px 15px;gap:10px"><div style="width:38px;height:38px;border-radius:8px;background:#eee;font-size:20px;display:flex;align-items:center;justify-content:center">🌙</div><div><b style="font-size:14px">Ahmed</b><p style="font-size:11px;color:#aaa">5 часов назад</p></div></div><div style="height:150px;background:linear-gradient(135deg,#f6851b,#ff4500);display:flex;align-items:center;justify-content:center;font-size:48px">💡</div><div style="padding:10px 15px;font-size:14px;color:#333">+50 QRT за открытую науку! 🙏 #HumanityFund</div><div style="display:flex;gap:18px;padding:10px 15px;border-top:0.5px solid #eee"><span style="font-size:13px;color:#888;cursor:pointer" onclick="T('❤️ Лайк')">❤️ 87</span><span style="font-size:13px;color:#888;cursor:pointer" onclick="T('💬')">💬 12</span><span style="font-size:13px;color:#888;cursor:pointer" onclick="T('🔗')">🔗 Поделиться</span></div></div></div></div>
-
-<div id="pg-card" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-card')">‹</span>Cards & Offers</div><div class="pgb"><div class="cv"><div class="cvt"><span>BSMLH CARD</span><span>🛡️</span></div><div class="cvn">•••• •••• •••• 7701</div><div class="cvb"><div><small>ДЕРЖАТЕЛЬ</small><div id="cn">Пользователь</div></div><div style="text-align:right"><small>QRT</small><div class="cvba" id="cb">0.01</div></div></div></div><div class="oi" onclick="T('🎁 Активировано!')">🎁<div><b>Бонус за первое изобретение</b><p>+10 QRT при фиксации уровня 2</p></div></div><div class="oi" onclick="T('🤝 Ссылка скопирована')">🤝<div><b>Пригласи друга</b><p>+3 QRT за реферала</p></div></div></div></div>
-
-<div id="pg-stk" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-stk')">‹</span>Stickers</div><div class="pgb"><div class="stl">BSMLH</div><div class="stg"><div onclick="T('🛡️')">🛡️</div><div onclick="T('💡')">💡</div><div onclick="T('🌱')">🌱</div><div onclick="T('🔐')">🔐</div><div onclick="T('⚡')">⚡</div><div onclick="T('🌍')">🌍</div><div onclick="T('🏆')">🏆</div><div onclick="T('🤝')">🤝</div></div><div class="stl">УРОВНИ</div><div class="stg"><div onclick="T('⚪ Новый')">⚪</div><div onclick="T('🟢 Активный')">🟢</div><div onclick="T('🔵 Надёжный')">🔵</div><div onclick="T('🟣 Доверенный')">🟣</div><div onclick="T('⭐ Легенда')">⭐</div><div onclick="T('👑 Основатель')">👑</div><div onclick="T('🧬 Верифицирован')">🧬</div><div onclick="T('💎 VIP')">💎</div></div></div></div>
-
-<div id="pg-set" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-set')">‹</span>Settings</div><div class="pgb" style="padding:0"><div class="sp" onclick="T('✏️ Редактирование')"><div class="sa" id="sa">👤</div><div><div id="sn" style="font-size:17px;font-weight:500">Пользователь</div><div id="sh" style="font-size:13px;color:#888">HUID: —</div></div><span style="color:#ccc;margin-left:auto">›</span></div><div style="padding:15px"><div class="mg" style="border-radius:12px;overflow:hidden"><div class="mi" onclick="tDark()"><span class="mii">🌙</span><span class="mit">Тёмная тема</span><span class="miv" id="dv">Выкл</span><span class="mia">›</span></div><div class="mi" onclick="T('🔔 Уведомления')"><span class="mii">🔔</span><span class="mit">Уведомления</span><span class="mia">›</span></div><div class="mi" onclick="T('🌐 Язык')"><span class="mii">🌐</span><span class="mit">Язык</span><span class="miv">Русский</span><span class="mia">›</span></div></div><div class="mg" style="border-radius:12px;overflow:hidden;margin-top:8px"><div class="mi" onclick="T('🔒 Безопасность')"><span class="mii">🔒</span><span class="mit">Безопасность</span><span class="mia">›</span></div><div class="mi" onclick="T('📱 NFC активен')"><span class="mii">📱</span><span class="mit">NFC карта</span><span class="miv gr">Активна</span><span class="mia">›</span></div></div><div class="mg" style="border-radius:12px;overflow:hidden;margin-top:8px"><div class="mi" onclick="T('BSMLH v9 | ALAI CORPORATION')"><span class="mii">ℹ️</span><span class="mit">О приложении</span><span class="miv">v9.0</span><span class="mia">›</span></div></div><div style="text-align:center;padding:24px"><button class="be" onclick="T('👋 До свидания!')">Выйти</button></div></div></div></div>
-
-<div id="pg-pat" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-pat')">‹</span>🛠 Патентная мастерская</div><div class="pgb"><div id="il"></div><div class="fc"><h3>+ Новое изобретение</h3><input id="it" class="fi" placeholder="Название изобретения"><textarea id="id" class="fi" placeholder="Опишите идею..."></textarea><input id="ii" class="fi" placeholder="МПК (пример: A01G 25/16)"><div class="lr"><div class="lv s" id="lv1" onclick="slv(1)"><b>L1</b><small>FREE</small></div><div class="lv" id="lv2" onclick="slv(2)"><b>L2</b><small>$9.99</small></div><div class="lv" id="lv3" onclick="slv(3)"><b>L3</b><small>$49.99</small></div></div><button class="bd" onclick="fix()">📱 ПРИЛОЖИТЬ NFC И ЗАФИКСИРОВАТЬ</button></div></div></div>
-
-<div id="pg-wal" class="pg"><div class="pgh"><span class="bk" onclick="hide('pg-wal')">‹</span>💰 QRT Кошелёк</div><div class="pgb"><div class="qc"><div class="ql">QRT БАЛАНС</div><div class="qa" id="wq">0.01</div><div class="qs">Quantum Reward Token</div></div><div class="rc"><div style="display:flex;justify-content:space-between">QRNC Репутация<b id="wr">0</b></div><div class="bt"><div class="bf" id="bb" style="width:0%"></div></div></div><div class="hc"><h4>История</h4><div id="hl"><div class="hr"><span>📱 NFC касание</span><span class="gr">+0.01 QRT</span></div></div></div></div></div>
-
-<!-- МОДАЛКИ -->
-
-<div id="mo-apps" class="mo" onclick="hide('mo-apps')"><div class="mb" onclick="event.stopPropagation()"><div class="mt">Apps & Programs</div><div class="ag"><a href="https://wa.me/" class="ai" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a><a href="https://t.me/" class="ai" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="">Telegram</a><a href="https://youtube.com" class="ai" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="">YouTube</a><a href="https://instagram.com" class="ai" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="">Instagram</a><a href="https://google.com" class="ai" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="">Google</a><div class="ai" onclick="T('🚧 Скоро')"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png" alt="">Ещё</div></div><div class="mc" onclick="hide('mo-apps')">Закрыть</div></div></div>
-
-<div id="mo-qr" class="mo" onclick="hide('mo-qr')"><div class="mb" onclick="event.stopPropagation()"><div class="mt">Мой QR код</div><div style="text-align:center"><img id="qi" src="" style="width:170px;height:170px;border-radius:12px" alt="QR"><p id="qt" style="margin-top:10px;font-size:13px;color:#888">—</p></div><div class="mc" onclick="hide('mo-qr')">Закрыть</div></div></div>
-
-<div id="mo-scan" class="mo" onclick="hide('mo-scan')"><div style="text-align:center" onclick="event.stopPropagation()"><div class="sf"><div class="sl"></div></div><p style="color:#fff;margin-top:14px">Наведите на QR код</p><p style="color:#888;margin-top:10px;cursor:pointer" onclick="hide('mo-scan')">Отмена</p></div></div>
+<div id="pg-wal" class="pg">
+    <div class="pgh"><span class="bk" onclick="hidePg('pg-wal')">‹</span>Wallet</div>
+    <div style="padding:20px; color:#000; text-align:center">
+        <h1 id="wq" style="font-size:40px; color:var(--gold)">0.01</h1>
+        <p>Баланс QRT</p>
+    </div>
+</div>
 
 <div id="ts"></div>
+
 <script>
-var U={name:'',huid:'',photo:'',qrt:0.01,qrnc:0,invs:[],lv:1,dark:false};
+var U={name:'',huid:'',photo:'',qrt:0.01,qrnc:0};
 
-// Заставка
-
-// Регистрация
+// РЕГИСТРАЦИЯ
 async function go1(){
-var n=document.getElementById(‘nm’).value.trim();
-if(!n){T(‘⚠️ Введите имя’);return;}
-U.name=n;
-document.getElementById(‘s0’).classList.remove(‘on’);
-document.getElementById(‘s1’).classList.add(‘on’);
-const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:‘user’}});
-document.getElementById(‘video’).srcObject=s;
+    var n=document.getElementById('nm').value.trim();
+    if(!n){T('⚠️ Введите имя');return;}
+    U.name=n;
+    document.getElementById('s0').classList.remove('on');
+    document.getElementById('s1').classList.add('on');
+    const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}});
+    document.getElementById('video').srcObject=s;
 }
 function snap(){
-var v=document.getElementById(‘video’),c=document.getElementById(‘cv’);
-c.width=v.videoWidth;c.height=v.videoHeight;
-c.getContext(‘2d’).drawImage(v,0,0);
-U.photo=c.toDataURL();
-if(v.srcObject)v.srcObject.getTracks().forEach(function(t){t.stop();});
-scr(‘s2’);
+    var v=document.getElementById('video'),c=document.getElementById('cv');
+    c.width=v.videoWidth;c.height=v.videoHeight;
+    c.getContext('2d').drawImage(v,0,0);
+    U.photo=c.toDataURL();
+    if(v.srcObject)v.srcObject.getTracks().forEach(t=>t.stop());
+    document.getElementById('s1').classList.remove('on');
+    document.getElementById('s2').classList.add('on');
 }
-function doNFC(){document.getElementById(‘nfc-txt’).innerText=‘ОЖИДАНИЕ ЧИПА…’;setTimeout(launch,2000);}
-function scr(id){document.querySelectorAll(’.scr’).forEach(function(s){s.classList.remove(‘on’);});document.getElementById(id).classList.add(‘on’);}
+function doNFC(){document.getElementById('nfc-txt').innerText='ОЖИДАНИЕ ЧИПА...';setTimeout(launch,2000);}
 
 function launch(){
-U.huid=Math.random().toString(36).substr(2,8).toUpperCase();
-var h=‘BSM-KZ-2025-’+U.huid;
-document.getElementById(‘pn’).innerText=U.name;
-document.getElementById(‘ph2’).innerText=‘HUID: ‘+h;
-document.getElementById(‘sn’).innerText=U.name;
-document.getElementById(‘sh’).innerText=‘HUID: ‘+h;
-document.getElementById(‘cn’).innerText=U.name.toUpperCase();
-if(U.photo)document.getElementById(‘pp’).src=U.photo;
-document.getElementById(‘qi’).src=‘https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=’+encodeURIComponent(‘BSMLH:’+h+’:’+U.name);
-document.getElementById(‘qt’).innerText=h;
-document.querySelectorAll(’.scr’).forEach(function(s){s.style.display=‘none’;});
-document.getElementById(‘app’).style.display=‘flex’;
-loadChats();upd();
+    U.huid=Math.random().toString(36).substr(2,8).toUpperCase();
+    document.getElementById('pn').innerText=U.name;
+    document.getElementById('ph2').innerText='HUID: '+U.huid;
+    if(U.photo)document.getElementById('pp').src=U.photo;
+    document.querySelectorAll('.scr').forEach(s=>s.style.display='none');
+    document.getElementById('app').style.display='flex';
+    loadChats();
 }
 
-// Навигация
+// НАВИГАЦИЯ ВНУТРИ ПРИЛОЖЕНИЯ
 function tab(name,title){
-[‘chat’,‘maps’,‘hub’,‘prof’].forEach(function(t){
-document.getElementById(‘tab-’+t).classList.toggle(‘on’,t===name);
-document.getElementById(‘nb-’+t).classList.toggle(‘on’,t===name);
-});
-document.getElementById(‘hdr’).innerText=title;
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+    document.querySelectorAll('.nb').forEach(n=>n.classList.remove('on'));
+    document.getElementById('tab-'+name).classList.add('on');
+    document.getElementById('nb-'+name).classList.add('on');
+    document.getElementById('hdr').innerText=title;
 }
-function show(id){document.getElementById(id).classList.add(‘on’);}
-function hide(id){document.getElementById(id).classList.remove(‘on’);}
 
-// Чат
+function showPg(id){document.getElementById(id).classList.add('on');}
+function hidePg(id){document.getElementById(id).classList.remove('on');}
+
 function loadChats(){
-var d=[{n:‘Alex Chen’,a:‘🤖’,m:‘Secure connection active’,t:‘14:23’},{n:‘Sarah Kim’,a:‘🎨’,m:‘Patent approved! 🎉’,t:‘12:41’},{n:‘Ahmed’,a:‘🌙’,m:‘Готов к лицензированию’,t:‘11:05’},{n:‘Li Wei’,a:‘🐲’,m:‘BSMLH is amazing!’,t:‘Вчера’},{n:‘Oracle’,a:‘🛡️’,m:‘Система работает стабильно’,t:‘Вчера’}];
-document.getElementById(‘tab-chat’).innerHTML=d.map(function(x){return’<div class="ci" onclick="T(\'💬 '+x.n+'\')"><div class="ca">’+x.a+’</div><div style="flex:1"><div style="display:flex;justify-content:space-between"><span class="cn">’+x.n+’</span><span class="ct">’+x.t+’</span></div><div class="cm">’+x.m+’</div></div></div>’;}).join(’’);
+    var d=[{n:'Alex Chen',a:'🤖',m:'Secure connection active'},{n:'Sarah Kim',a:'🎨',m:'Patent approved! 🎉'}];
+    document.getElementById('tab-chat').innerHTML=d.map(x=>`
+        <div style="display:flex;padding:15px;background:#fff;border-bottom:1px solid #eee">
+            <div style="width:45px;height:45px;background:#eee;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-right:12px;font-size:20px">${x.a}</div>
+            <div><b>${x.n}</b><p style="font-size:13px;color:#888">${x.m}</p></div>
+        </div>
+    `).join('');
 }
 
-// Патент
-function slv(n){U.lv=n;[1,2,3].forEach(function(i){document.getElementById(‘lv’+i).classList.toggle(‘s’,i===n);});}
-function fix(){
-var t=document.getElementById(‘it’).value.trim();
-if(!t){T(‘⚠️ Введите название’);return;}
-T(‘📱 Приложите NFC…’);
-setTimeout(function(){
-var q=[1,5,10][U.lv-1];
-U.invs.unshift({t:t,lv:U.lv,ipc:document.getElementById(‘ii’).value||‘N/A’,date:new Date().toLocaleDateString(‘ru-RU’),id:‘INV-’+Math.random().toString(36).substr(2,6).toUpperCase()});
-U.qrt=Math.round((U.qrt+q)*100)/100;
-document.getElementById(‘it’).value=’’;document.getElementById(‘id’).value=’’;document.getElementById(‘ii’).value=’’;
-document.getElementById(‘il’).innerHTML=U.invs.map(function(x){return’<div class="ii"><span class="ib">L’+x.lv+’</span><h4 style="font-size:14px;margin:4px 0 2px">’+x.t+’</h4><p style="font-size:12px;color:#888">’+x.id+’ · ‘+x.date+’</p></div>’;}).join(’’);
-upd();addH(‘🛠 Изобретение L’+U.lv,’+’+q+’ QRT’);T(‘✅ +’+q+’ QRT’);
-},1500);
-}
-
-// Балансы
-function upd(){
-var q=U.qrt.toFixed(2),r=U.qrnc;
-var ti=r===0?‘⚪ Новый’:r<=100?‘🟢 Активный’:r<=500?‘🔵 Надёжный’:r<=2000?‘🟣 Доверенный’:‘⭐ Легенда’;
-[‘mq’,‘wq’].forEach(function(id){document.getElementById(id).innerText=q;});
-[‘mr’,‘wr’].forEach(function(id){document.getElementById(id).innerText=r;});
-document.getElementById(‘mt’).innerText=ti;
-document.getElementById(‘cm’).innerText=q+’ QRT’;
-document.getElementById(‘cb’).innerText=q;
-document.getElementById(‘bb’).style.width=Math.min((r/100)*100,100)+’%’;
-}
-function addH(r,a){var l=document.getElementById(‘hl’),d=document.createElement(‘div’);d.className=‘hr’;d.innerHTML=’<span>’+r+’</span><span class="gr">’+a+’</span>’;l.insertBefore(d,l.firstChild);}
-
-// Тёмная тема
-function tDark(){U.dark=!U.dark;document.getElementById(‘app’).style.background=U.dark?’#1a1a1a’:’#ededed’;document.getElementById(‘dv’).innerText=U.dark?‘Вкл’:‘Выкл’;T(U.dark?‘🌙 Тёмная тема’:‘☀️ Светлая тема’);}
-
-// Тост
-var tt;function T(m){var e=document.getElementById(‘ts’);e.innerText=m;e.classList.add(‘on’);clearTimeout(tt);tt=setTimeout(function(){e.classList.remove(‘on’);},2200);}
+var tt;function T(m){var e=document.getElementById('ts');e.innerText=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2200);}
 </script>
-
 </body>
 </html>
